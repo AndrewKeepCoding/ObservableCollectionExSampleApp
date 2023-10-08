@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="ObservableCollectionExSampleApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:ObservableCollectionExSampleApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid
+        Margin="10"
+        ColumnDefinitions="Auto,*"
+        ColumnSpacing="20">
+
+        <!--  Operations  -->
+        <StackPanel
+            Grid.Column="0"
+            Spacing="20">
+            <NumberBox
+                x:Name="ItemsCountNumberBox"
+                Header="New items per 0.1 second"
+                Value="100" />
+            <ToggleSwitch
+                Header="Use ObservableCollectionEx"
+                IsOn="{x:Bind ViewModel.UseObservableCollectionEx, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="20">
+                <Button
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    Command="{x:Bind ViewModel.AddItemsCommand}"
+                    CommandParameter="{x:Bind (x:Int32)ItemsCountNumberBox.Value, Mode=OneWay}"
+                    Content="Start" />
+                <Button
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    Command="{x:Bind ViewModel.AddItemsCancelCommand}"
+                    Content="Cancel" />
+            </Grid>
+            <TextBlock HorizontalAlignment="Right">
+                <Run Text="{x:Bind ViewModel.Items.Count, Mode=OneWay}" />
+                <Run Text=" items" />
+            </TextBlock>
+        </StackPanel>
+
+        <!--  Item List  -->
+        <ListView
+            Grid.Column="1"
+            Width="200"
+            HorizontalAlignment="Left"
+            ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Item">
+                    <TextBlock
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Id}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>

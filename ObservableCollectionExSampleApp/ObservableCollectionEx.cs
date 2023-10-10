@@ -22,7 +22,7 @@ public class ObservableCollectionEx<T> : ObservableCollection<T>
         OnCollectionChanged(
             new NotifyCollectionChangedEventArgs(
                 action: NotifyCollectionChangedAction.Add,
-                changedItems: itemsList,
-                startingIndex: itemsList.Count - 1));
+                changedItem: itemsList.Last(),
+                index: itemsList.Count - 1));
     }
 }

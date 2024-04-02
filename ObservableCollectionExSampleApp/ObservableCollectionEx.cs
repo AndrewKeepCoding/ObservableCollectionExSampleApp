@@ -30,7 +30,7 @@ public class ObservableCollectionEx<T> : ObservableCollection<T>
                 OnCollectionChanged(
                     new NotifyCollectionChangedEventArgs(
                         action: NotifyCollectionChangedAction.Add,
-                        changedItems: collection.ToList(),
+                        changedItems: collection as System.Collections.IList ?? collection.ToList(),
                         startingIndex: Count - count));
             }
             else // count == 1 - single-item change

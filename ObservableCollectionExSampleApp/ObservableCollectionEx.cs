@@ -36,7 +36,7 @@ public class ObservableCollectionEx<T> : ObservableCollection<T>
             else // count == 1 - single-item change
             {
                 OnCollectionChanged(
-                new NotifyCollectionChangedEventArgs(
+                    new NotifyCollectionChangedEventArgs(
                         action: NotifyCollectionChangedAction.Add,
                         changedItem: collection.First(),
                         index: Count - 1));

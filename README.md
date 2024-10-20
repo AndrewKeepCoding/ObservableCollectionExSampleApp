@@ -1,3 +1,3 @@
 # ObservableCollectionExSampleApp
 
-[🎬 YouTube](https://www.youtube.com/watch?v=4txrE3Nstkc)
+[🎬 YouTube](https://www.youtube.com/watch?v=t3qvlbnoooA)
